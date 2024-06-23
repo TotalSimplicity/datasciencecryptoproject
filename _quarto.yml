@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "."
+  title: "Cryptocurrency Spike Analysis"
   navbar:
     left:
       - href: index.qmd

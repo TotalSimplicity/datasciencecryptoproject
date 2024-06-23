@@ -2,4 +2,10 @@
 title: "About"
 ---
 
-About this site
+Cryptocurrency is a relatively recent development. The data used is from the cryptocurrency market from the top 5 cryptocurrencies. Relevant data from the dataset was sorted out to visualize the market spikes. Spikes in individual cryptocurrencies correlate to the crypto market as a whole.
+
+Email: leonardo.kulon@gmail.com
+
+[Github Repo](https://github.com/TotalSimplicity/datasciencecryptoproject)
+
+[Datascience Course](https://bootcamp.davidkane.info/schedule.html)
