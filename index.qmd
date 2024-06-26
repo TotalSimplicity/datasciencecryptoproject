@@ -1,7 +1,61 @@
 ---
 title: "Main"
+execute:
+  echo: false
 ---
 
-This is a Quarto website.
+Cryptocurrencies are highly volatile, with significant fluctuations in their market values. Data from the top 5 cryptocurrencies was analyzed to visualize these market spikes. This analysis revealed that spikes in individual cryptocurrencies often correlate with movements in the broader cryptocurrency market, highlighting the interconnected nature of these digital assets.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+```{r}
+#| label: setup
+#| message: false
+# Load tidyverse package
+library(tidyverse)
+library(dplyr)
+
+
+# Load all of the currency data from .csv's
+bch <- read_csv("data/BCH-USD.csv")
+bnb <- read_csv("data/BNB-USD.csv")
+btc <- read_csv("data/BTC-USD.csv")
+eth <- read_csv("data/ETH-USD.csv")
+iota <- read_csv("data/IOTA-USD.csv")
+sol <- read_csv("data/SOL-USD.csv")
+usdt <- read_csv("data/USDT-USD.csv")
+xrp <- read_csv("data/XRP-USD.csv")
+
+bch$Ticker <- 'bch'
+bnb$Ticker <- 'bnb'
+btc$Ticker <- 'btc'
+eth$Ticker <- 'eth'
+iota$Ticker <- 'iota'
+sol$Ticker <- 'sol'
+usdt$Ticker <- 'usdt'
+xrp$Ticker <- 'xrp'
+```
+
+```{r}
+#| label: combineData
+# Create an empty data frame to store combined data
+combined_data <- rbind(bch,bnb,btc,eth,iota,sol,usdt,xrp)
+combined_data <- combined_data %>%
+  mutate(Close = ifelse(Ticker != "btc", Close * 12, Close))
+
+```
+
+```{r}
+combined_data |>
+  ggplot(aes(x = Date, y = Close, color=Ticker))+
+  geom_line()+
+  labs(
+    y = "Close Price",
+    Ticker = "Currency Ticker",
+    title = "Spikes in Close Price by Currency",
+    subtitle = "The large spikes are common between different cryptocurrencies.",
+    caption = "The close values for some currencies are multiplied to make this graph clearer.\nData: Spoorthi K. on Kaggle"
+  )+
+  theme(axis.ticks.y=element_blank(), axis.text.y = element_blank())
+
+```
+
+This graph illustrates the close prices of various cryptocurrencies from 2016 to 2024, highlighting significant spikes. THe graph shows that multiple cryptocurrencies experienced large price spikes, particularly around 2018 and 2021. Bitcoin (BTC), Ethereum (ETH), Binance Coin (BNB), Bitcoin Cash (BCH), IOTA, Solana (SOL), Tether (USDT), and Ripple (XRP) are included, with BTC and ETH showing the highest spikes, underscoring their market prominence and volatility. Some close values are multiplied for clarity, indicating potential variation in actual prices. The correlated spikes suggest common external factors influencing the market, such as regulatory news or economic events. Major spikes in 2017-2018 and 2020-2021 coincide with historic bull markets, while post-2021 trends vary among cryptocurrencies, with BTC and ETH continuing to show volatility. Overall, the graph effectively captures cryptocurrency price volatility and market movements over the past eight years, reflecting broader market dynamics.
