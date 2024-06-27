@@ -36,6 +36,7 @@ xrp$Ticker <- 'xrp'
 # Create an empty data frame to store combined data
 combined_data <- rbind(bch,bnb,btc,eth,iota,sol,usdt,xrp)
 
+
 ```
 
 ```{r}
@@ -43,6 +44,7 @@ combined_data |>
 ggplot(aes(x = Date, y = Volume)) +
   geom_bar(stat = "identity") +
   labs(title = "Volume Traded Over Time", x = "Date", y = "Volume", subtitle = "The volume spikes occur when the close price spikes.")+
-  theme(axis.ticks.y=element_blank(), axis.text.y = element_blank())
+  theme(axis.ticks.y=element_blank(), axis.text.y = element_blank())+
+   facet_grid(rows = vars(Ticker))
 ```
 
