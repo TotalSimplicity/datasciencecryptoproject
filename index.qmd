@@ -59,3 +59,5 @@ combined_data |>
 ```
 
 This graph illustrates the close prices of various cryptocurrencies from 2016 to 2024, highlighting significant spikes. THe graph shows that multiple cryptocurrencies experienced large price spikes, particularly around 2018 and 2021. Bitcoin (BTC), Ethereum (ETH), Binance Coin (BNB), Bitcoin Cash (BCH), IOTA, Solana (SOL), Tether (USDT), and Ripple (XRP) are included, with BTC and ETH showing the highest spikes, underscoring their market prominence and volatility. Some close values are multiplied for clarity, indicating potential variation in actual prices. The correlated spikes suggest common external factors influencing the market, such as regulatory news or economic events. Major spikes in 2017-2018 and 2020-2021 coincide with historic bull markets, while post-2021 trends vary among cryptocurrencies, with BTC and ETH continuing to show volatility. Overall, the graph effectively captures cryptocurrency price volatility and market movements over the past eight years, reflecting broader market dynamics.
+
+

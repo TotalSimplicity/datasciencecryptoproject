@@ -1,0 +1,48 @@
+---
+title: "Volume"
+execute:
+  echo: false
+---
+```{r}
+#| label: setup
+#| message: false
+# Load tidyverse package
+library(tidyverse)
+library(dplyr)
+
+
+# Load all of the currency data from .csv's
+bch <- read_csv("data/BCH-USD.csv")
+bnb <- read_csv("data/BNB-USD.csv")
+btc <- read_csv("data/BTC-USD.csv")
+eth <- read_csv("data/ETH-USD.csv")
+iota <- read_csv("data/IOTA-USD.csv")
+sol <- read_csv("data/SOL-USD.csv")
+usdt <- read_csv("data/USDT-USD.csv")
+xrp <- read_csv("data/XRP-USD.csv")
+
+bch$Ticker <- 'bch'
+bnb$Ticker <- 'bnb'
+btc$Ticker <- 'btc'
+eth$Ticker <- 'eth'
+iota$Ticker <- 'iota'
+sol$Ticker <- 'sol'
+usdt$Ticker <- 'usdt'
+xrp$Ticker <- 'xrp'
+```
+
+```{r}
+#| label: combineData
+# Create an empty data frame to store combined data
+combined_data <- rbind(bch,bnb,btc,eth,iota,sol,usdt,xrp)
+
+```
+
+```{r}
+combined_data |>
+ggplot(aes(x = Date, y = Volume)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Volume Traded Over Time", x = "Date", y = "Volume", subtitle = "The volume spikes occur when the close price spikes.")+
+  theme(axis.ticks.y=element_blank(), axis.text.y = element_blank())
+```
+
