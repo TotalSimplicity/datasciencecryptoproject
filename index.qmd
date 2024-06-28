@@ -36,8 +36,9 @@ xrp$Ticker <- 'xrp'
 
 ```{r}
 #| label: combineData
-# Create an empty data frame to store combined data
+# Combine the different datasets
 combined_data <- rbind(bch,bnb,btc,eth,iota,sol,usdt,xrp)
+# Multiply some close prices by 12
 combined_data <- combined_data %>%
   mutate(Close = ifelse(Ticker != "btc", Close * 12, Close))
 
@@ -45,8 +46,10 @@ combined_data <- combined_data %>%
 
 ```{r}
 combined_data |>
+  # Send the dataset into the plotting software
   ggplot(aes(x = Date, y = Close, color=Ticker))+
   geom_line()+
+  # Labels
   labs(
     y = "Close Price",
     Ticker = "Currency Ticker",

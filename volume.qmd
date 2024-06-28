@@ -40,11 +40,14 @@ combined_data <- rbind(bch,bnb,btc,eth,iota,sol,usdt,xrp)
 ```
 
 ```{r}
+# Send the dataset into the plotting library
 combined_data |>
+  # Set the x axis to the date and the y axis to the volume
 ggplot(aes(x = Date, y = Volume)) +
   geom_bar(stat = "identity") +
   labs(title = "Volume Traded Over Time", x = "Date", y = "Volume", subtitle = "The volume spikes occur when the close price spikes.")+
   theme(axis.ticks.y=element_blank(), axis.text.y = element_blank())+
+  # Split the graph by Currency
    facet_grid(rows = vars(Ticker))
 ```
 
